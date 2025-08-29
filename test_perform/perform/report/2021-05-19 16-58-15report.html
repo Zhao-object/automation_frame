@@ -1,0 +1,3884 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>woniuboss2.5 automation report</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>woniuboss2.5 automation report</h1>
+<p class='attribute'><strong>Start Time:</strong> 2021-05-19 16:58:15</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:07.047266</p>
+<p class='attribute'><strong>Status:</strong> Pass 62 Failure 52 Error 2</p>
+
+<p class='description'>oniuboss2.5 unittest framework</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_backstage_management.BackStage</td>
+    <td>18</td>
+    <td>8</td>
+    <td>10</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c1',18)">Detail</a></td>
+</tr>
+
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_addtree_0__: 后台管理新增资源树,资源名，路径名，描述正确 新增成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_addtree_1__: 后台管理新增资源树,资源为空，路径为空，描述为空，新增失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        fail</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 30, in test_addtree
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 30, in test_addtree
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_addtree_2__: 后台管理新增资源,资源名为空，路径正确，描述正确 新增失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.3')" >
+        fail</a>
+
+    <div id='div_ft1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.3: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 30, in test_addtree
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 30, in test_addtree
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_addtree_3__: 后台管理新增资源树,资源名正确，路径名为空，描述正确 ，新增失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.4')" >
+        fail</a>
+
+    <div id='div_ft1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.4: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 30, in test_addtree
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 30, in test_addtree
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_dicadd_0__: 后台管理字典管理,输入字典值，标签备注 新增成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.5')" >
+        pass</a>
+
+    <div id='div_pt1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.5: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicadd_1__: 后台管理字典管理,值都为空</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        fail</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 39, in test_dicadd
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 39, in test_dicadd
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_dicstart_0__: 后台管理字典管理输入正确参数（正常）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.7')" >
+        pass</a>
+
+    <div id='div_pt1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.7: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.8' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicstart_1__: 后台管理字典管理输入特殊字符</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.8')" >
+        fail</a>
+
+    <div id='div_ft1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.8: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 48, in test_dicstart
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 48, in test_dicstart
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.9' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicstart_2__: 后台管理字典管理输入英文</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.9')" >
+        fail</a>
+
+    <div id='div_ft1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.9: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 48, in test_dicstart
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 48, in test_dicstart
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.10' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicstart_3__: 后台管理字典管理输入为空</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.10')" >
+        fail</a>
+
+    <div id='div_ft1.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.10: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 48, in test_dicstart
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 48, in test_dicstart
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'eroor'
+- success
++ eroor
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.11' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_dicstop_0__: 后台管理字典管理编辑输入正确字典名称，字典标签，成功保存</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.11')" >
+        pass</a>
+
+    <div id='div_pt1.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.11: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.12' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicstop_1__: 后台管理字典管理编辑输入错误字典名称，字典标签，保存失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.12')" >
+        fail</a>
+
+    <div id='div_ft1.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.12: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 66, in test_dicstop
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'fail'
+- success
++ fail
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 66, in test_dicstop
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'fail'
+- success
++ fail
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.13' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicstop_2__: 后台管理字典管理编辑输入错误字典名称，正确字典标签，保存失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.13')" >
+        fail</a>
+
+    <div id='div_ft1.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.13: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 66, in test_dicstop
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'fail'
+- success
++ fail
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 66, in test_dicstop
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'fail'
+- success
++ fail
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.14' class='none'>
+    <td class='failCase'><div class='testcase'>test_dicstop_3__: 后台管理字典管理编辑输入正确字典名称，错误字典标签，保存失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.14')" >
+        fail</a>
+
+    <div id='div_ft1.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.14: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 66, in test_dicstop
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'fail'
+- success
++ fail
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_backstage_management.py", line 66, in test_dicstop
+    self.assertEqual(response, arg3, '失败')
+AssertionError: 'success' != 'fail'
+- success
++ fail
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_query_0__: 用户管理，输入正确的用户名</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.15')" >
+        pass</a>
+
+    <div id='div_pt1.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.15: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_query_1__: 用户管理，用户名为空</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.16')" >
+        pass</a>
+
+    <div id='div_pt1.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.16: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_query_2__: 用户管理，用户名为中文</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.17')" >
+        pass</a>
+
+    <div id='div_pt1.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.17: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt1.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_query_3__: 用户管理，用户名特殊字符</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.18')" >
+        pass</a>
+
+    <div id='div_pt1.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.18: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_employment_management.TestEmployManApi</td>
+    <td>16</td>
+    <td>6</td>
+    <td>10</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c2',16)">Detail</a></td>
+</tr>
+
+<tr id='pt2.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getjob_intercommit_0__: 参数正确,就业管理就业管理提交成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.1')" >
+        pass</a>
+
+    <div id='div_pt2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.1: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_getjob_intercommit_1__: 参数错误,就业管理就业管理提交失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        fail</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 78, in test_getjob_intercommit
+    assert expected in result_text.text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 78, in test_getjob_intercommit
+    assert expected in result_text.text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_getjob_intersave_0__: 参数正确,就业管理就业管理面试保存成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.3')" >
+        pass</a>
+
+    <div id='div_pt2.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.3: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_getjob_intersave_1__: 参数错误,就业管理就业管理面试保存失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.4')" >
+        fail</a>
+
+    <div id='div_ft2.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.4: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 69, in test_getjob_intersave
+    assert expected in result_text.text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 69, in test_getjob_intersave
+    assert expected in result_text.text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_getjob_search_0__: 参数正确,就业管理就业管理搜索成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.5')" >
+        fail</a>
+
+    <div id='div_ft2.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.5: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 60, in test_getjob_search
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 60, in test_getjob_search
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_getjob_search_1__: 参数错误,就业管理就业管理搜索失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.6')" >
+        fail</a>
+
+    <div id='div_ft2.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.6: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 60, in test_getjob_search
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 60, in test_getjob_search
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.7' class='none'>
+    <td class='failCase'><div class='testcase'>test_getjob_search_2__: 参数错误,就业管理就业管理搜索失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.7')" >
+        fail</a>
+
+    <div id='div_ft2.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.7: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 60, in test_getjob_search
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 60, in test_getjob_search
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_technology_alloption_0__: 参数正确,就业管理技术面试全部查询成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.8')" >
+        pass</a>
+
+    <div id='div_pt2.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.8: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.9' class='none'>
+    <td class='failCase'><div class='testcase'>test_technology_alloption_1__: 参数错误,就业管理技术面试全部查询失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.9')" >
+        fail</a>
+
+    <div id='div_ft2.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.9: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 22, in test_technology_alloption
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 22, in test_technology_alloption
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_technology_interview_0__: 参数正确,就业管理技术面试查询成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.10')" >
+        pass</a>
+
+    <div id='div_pt2.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.10: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.11' class='none'>
+    <td class='failCase'><div class='testcase'>test_technology_interview_1__: 参数错误,就业管理技术面试查询失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.11')" >
+        fail</a>
+
+    <div id='div_ft2.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.11: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 50, in test_technology_interview
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 50, in test_technology_interview
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.12' class='none'>
+    <td class='failCase'><div class='testcase'>test_technology_interview_2__: 参数错误,就业管理技术面试查询失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.12')" >
+        fail</a>
+
+    <div id='div_ft2.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.12: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 50, in test_technology_interview
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 50, in test_technology_interview
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_technology_passoption_0__: 参数正确,就业管理技术面试通过查询成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.13')" >
+        pass</a>
+
+    <div id='div_pt2.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.13: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.14' class='none'>
+    <td class='failCase'><div class='testcase'>test_technology_passoption_1__: 参数错误,就业管理技术面试通过查询成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.14')" >
+        fail</a>
+
+    <div id='div_ft2.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.14: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 31, in test_technology_passoption
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 31, in test_technology_passoption
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt2.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_technology_unpassoption_0__: 参数正确,就业管理技术面试未通过查询成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt2.15')" >
+        pass</a>
+
+    <div id='div_pt2.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt2.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt2.15: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.16' class='none'>
+    <td class='failCase'><div class='testcase'>test_technology_unpassoption_1__: 参数错误,就业管理技术面试未通过查询失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.16')" >
+        fail</a>
+
+    <div id='div_ft2.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.16: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 40, in test_technology_unpassoption
+    assert expected in result_text
+AssertionError
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_employment_management.py", line 40, in test_technology_unpassoption
+    assert expected in result_text
+AssertionError
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_enterprise_customers.API_enterprise</td>
+    <td>7</td>
+    <td>4</td>
+    <td>3</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c3',7)">Detail</a></td>
+</tr>
+
+<tr id='pt3.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_add_enterprise_0__: 新增企业</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.1')" >
+        pass</a>
+
+    <div id='div_pt3.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.1: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_enterprise_1__: 新增企业（必填参数为空）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.2')" >
+        fail</a>
+
+    <div id='div_ft3.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_enterprise_customers.py", line 21, in test_add_enterprise
+    self.assertEqual(response.text, arg3, '失败')
+AssertionError: '新增成功.' != 'erro'
+- 新增成功.
++ erro
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_enterprise_customers.py", line 21, in test_add_enterprise
+    self.assertEqual(response.text, arg3, '失败')
+AssertionError: '新增成功.' != 'erro'
+- 新增成功.
++ erro
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_enterprise_2__: 新增企业（必填参数格式不正确）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.3')" >
+        fail</a>
+
+    <div id='div_ft3.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.3: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_enterprise_customers.py", line 21, in test_add_enterprise
+    self.assertEqual(response.text, arg3, '失败')
+AssertionError: '新增成功.' != 'erro'
+- 新增成功.
++ erro
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_enterprise_customers.py", line 21, in test_add_enterprise
+    self.assertEqual(response.text, arg3, '失败')
+AssertionError: '新增成功.' != 'erro'
+- 新增成功.
++ erro
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_modify_0__: 企业修改</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.4')" >
+        pass</a>
+
+    <div id='div_pt3.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.4: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_modify_1__: 企业修改（必填参数为空）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.5')" >
+        fail</a>
+
+    <div id='div_ft3.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.5: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_enterprise_customers.py", line 40, in test_modify
+    self.assertEqual(response.text,arg3,'失败')
+AssertionError: '修改成功.' != 'erro'
+- 修改成功.
++ erro
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_enterprise_customers.py", line 40, in test_modify
+    self.assertEqual(response.text,arg3,'失败')
+AssertionError: '修改成功.' != 'erro'
+- 修改成功.
++ erro
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_search_0__: 企业客户搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.6')" >
+        pass</a>
+
+    <div id='div_pt3.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.6: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt3.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_search_1__: 企业客户搜索（不输入名称）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt3.7')" >
+        pass</a>
+
+    <div id='div_pt3.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt3.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt3.7: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_financial_management.Financial</td>
+    <td>7</td>
+    <td>5</td>
+    <td>2</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c4',7)">Detail</a></td>
+</tr>
+
+<tr id='ft4.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_The_financial_flow_search_api_0__: 财务管理财务流水查询接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.1')" >
+        fail</a>
+
+    <div id='div_ft4.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft4.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft4.1: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_financial_management.py", line 22, in test_The_financial_flow_search_api
+    self.assertIn(arg3,c_search_result,'fail')
+AssertionError: '"totalRow":40,"pageNumber":1,' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : fail
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_financial_management.py", line 22, in test_The_financial_flow_search_api
+    self.assertIn(arg3,c_search_result,'fail')
+AssertionError: '"totalRow":40,"pageNumber":1,' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : fail
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft4.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_add_running_water_api_0__: 财务管理财务流水新增流水接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft4.2')" >
+        fail</a>
+
+    <div id='div_ft4.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft4.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft4.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_financial_management.py", line 40, in test_add_running_water_api
+    self.assertIn(arg3,c_last_month_result,'fail')
+AssertionError: " '" not found in '' : fail
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_financial_management.py", line 40, in test_add_running_water_api
+    self.assertIn(arg3,c_last_month_result,'fail')
+AssertionError: " '" not found in '' : fail
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_last_month_api_0__: 财务管理财务流水上月/本月查询接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.3')" >
+        pass</a>
+
+    <div id='div_pt4.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.3: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_modification_api_0__: 修改接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.4')" >
+        pass</a>
+
+    <div id='div_pt4.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.4: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_name_search_api_0__: 学员缴费姓名搜索查询接口参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.5')" >
+        pass</a>
+
+    <div id='div_pt4.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.5: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_pay_the_fees_api_0__: 学员缴费缴费接口参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.6')" >
+        pass</a>
+
+    <div id='div_pt4.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.6: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt4.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_return_premium_api_0__: 学员缴费退费接口参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt4.7')" >
+        pass</a>
+
+    <div id='div_pt4.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt4.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt4.7: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_login.LogIn</td>
+    <td>4</td>
+    <td>3</td>
+    <td>1</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c5',4)">Detail</a></td>
+</tr>
+
+<tr id='ft5.1' class='none'>
+    <td class='failCase'><div class='testcase'>test_login_api_0__: 所有参数正确,登录成功</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft5.1')" >
+        fail</a>
+
+    <div id='div_ft5.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft5.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft5.1: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_login.py", line 24, in test_login_api
+    self.assertEqual(login_text[0],arg3 ,'失败')
+AssertionError: 'error' != 'success'
+- error
++ success
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_login.py", line 24, in test_login_api
+    self.assertEqual(login_text[0],arg3 ,'失败')
+AssertionError: 'error' != 'success'
+- error
++ success
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_login_api_1__: 账号错误，登录失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.2')" >
+        pass</a>
+
+    <div id='div_pt5.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.2: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_login_api_2__: 密码错误，登录失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.3')" >
+        pass</a>
+
+    <div id='div_pt5.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.3: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt5.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_login_api_3__: 验证码错误，登录失败</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt5.4')" >
+        pass</a>
+
+    <div id='div_pt5.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt5.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt5.4: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='errorClass'>
+    <td>unittest.loader._FailedTest</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>2</td>
+    <td><a href="javascript:showClassDetail('c6',2)">Detail</a></td>
+</tr>
+
+<tr id='ft6.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_marketing_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.1')" >
+        error</a>
+
+    <div id='div_ft6.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft6.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft6.1: ImportError: Failed to import test module: test_marketing_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_marketing_management.py", line 7, in &lt;module&gt;
+    class Market(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_marketing_management.py", line 69, in Market
+    upfileinfo = DataParse('../../test_data/data.xlsx').parse_excel_datas('upfile')
+  File "D:\py_test\ui_ui_ui\automation_frame\test_parse_data\prase_data.py", line 27, in parse_excel_datas
+    dic = eval(i[1])
+  File "&lt;string&gt;", line 2, in &lt;module&gt;
+FileNotFoundError: [Errno 2] No such file or directory: '../test_data/testwoniusales1.xls'
+
+ImportError: Failed to import test module: test_marketing_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_marketing_management.py", line 7, in &lt;module&gt;
+    class Market(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_marketing_management.py", line 69, in Market
+    upfileinfo = DataParse('../../test_data/data.xlsx').parse_excel_datas('upfile')
+  File "D:\py_test\ui_ui_ui\automation_frame\test_parse_data\prase_data.py", line 27, in parse_excel_datas
+    dic = eval(i[1])
+  File "&lt;string&gt;", line 2, in &lt;module&gt;
+FileNotFoundError: [Errno 2] No such file or directory: '../test_data/testwoniusales1.xls'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft6.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_student_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft6.2')" >
+        error</a>
+
+    <div id='div_ft6.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft6.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft6.2: ImportError: Failed to import test module: test_student_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_student_management.py", line 8, in &lt;module&gt;
+    class TestStuManageApi(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_student_management.py", line 35, in TestStuManageApi
+    mylist1 = DataParse('../../test_data/data.xlsx').parse_excel_datas("基本信息修改")
+  File "D:\py_test\ui_ui_ui\automation_frame\test_parse_data\prase_data.py", line 27, in parse_excel_datas
+    dic = eval(i[1])
+  File "&lt;string&gt;", line 19, in &lt;module&gt;
+FileNotFoundError: [Errno 2] No such file or directory: '../test_data/th.jpg'
+
+ImportError: Failed to import test module: test_student_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_student_management.py", line 8, in &lt;module&gt;
+    class TestStuManageApi(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_student_management.py", line 35, in TestStuManageApi
+    mylist1 = DataParse('../../test_data/data.xlsx').parse_excel_datas("基本信息修改")
+  File "D:\py_test\ui_ui_ui\automation_frame\test_parse_data\prase_data.py", line 27, in parse_excel_datas
+    dic = eval(i[1])
+  File "&lt;string&gt;", line 19, in &lt;module&gt;
+FileNotFoundError: [Errno 2] No such file or directory: '../test_data/th.jpg'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_personnel_management.API_personnel</td>
+    <td>6</td>
+    <td>3</td>
+    <td>3</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c7',6)">Detail</a></td>
+</tr>
+
+<tr id='pt7.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Employee_add_0__: 员工管理新增</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.1')" >
+        pass</a>
+
+    <div id='div_pt7.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt7.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt7.1: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.2' class='none'>
+    <td class='failCase'><div class='testcase'>test_Employee_add_1__: 员工管理新增（必填参数为空）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.2')" >
+        fail</a>
+
+    <div id='div_ft7.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft7.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft7.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_personnel_management.py", line 29, in test_Employee_add
+    self.assertEqual(response,arg3,'失败')
+AssertionError: 'success' != 'erro'
+- success
++ erro
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_personnel_management.py", line 29, in test_Employee_add
+    self.assertEqual(response,arg3,'失败')
+AssertionError: 'success' != 'erro'
+- success
++ erro
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt7.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Employee_modify_0__: 员工管理修改</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.3')" >
+        pass</a>
+
+    <div id='div_pt7.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt7.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt7.3: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_Employee_modify_1__: 员工管理修改(必填参数为空)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.4')" >
+        fail</a>
+
+    <div id='div_ft7.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft7.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft7.4: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_personnel_management.py", line 37, in test_Employee_modify
+    self.assertEqual(response,arg3,'失败')
+AssertionError: '' != 'erro'
++ erro : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_personnel_management.py", line 37, in test_Employee_modify
+    self.assertEqual(response,arg3,'失败')
+AssertionError: '' != 'erro'
++ erro : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft7.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_Employee_search_0__: 员工管理搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft7.5')" >
+        fail</a>
+
+    <div id='div_ft7.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft7.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft7.5: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_personnel_management.py", line 19, in test_Employee_search
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'totalRow":97,"' not found in '{"totalRow":79,"pageNumber":1,"firstPage":true,"lastPage":false,"totalPage":8,"pageSize":10,"list":[{"qq":"","work_id":"WNCD003","department_id":1,"sex":"男","department_name":"管理部","region_id":1,"employee_name":"陈华","employee_id":3,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"副总经理","email":"chenhua@woniuxy.com"},{"qq":"","work_id":"WNCD004","department_id":5,"sex":"女","department_name":"渠道部","region_id":1,"employee_name":"刘雪梅","employee_id":4,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"渠道主管","email":"liuxuemei@woniuxy.com"},{"qq":"","work_id":"WNCD005","department_id":7,"sex":"男","department_name":"教学部","region_id":1,"employee_name":"李懿","employee_id":5,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"研发主管","email":"liyi@woniuxy.com"},{"qq":"","work_id":"WNCD006","department_id":6,"sex":"男","department_name":"市场部","region_id":1,"employee_name":"吴润","employee_id":6,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"市场主管","email":"wurun@woniuxy.com"},{"qq":"","work_id":"WNCD008","department_id":7,"sex":"男","department_name":"教学部","region_id":1,"employee_name":"王军","employee_id":7,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"讲师","email":"wangjun@woniuxy.com"},{"qq":"","work_id":"WNCD011","department_id":3,"sex":"女","department_name":"咨询部","region_id":1,"employee_name":"郑雪娇","employee_id":8,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"咨询主管","email":"zhengxuejiao@woniuxy.com"},{"qq":"","work_id":"WNCD012","department_id":6,"sex":"女","department_name":"市场部","region_id":1,"employee_name":"刘敏","employee_id":9,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"专员","email":"liumin@woniuxy.com"},{"qq":"","work_id":"WNCD013","department_id":2,"sex":"女","department_name":"就业部","region_id":1,"employee_name":"林丽","employee_id":10,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"专员","email":"linli@woniuxy.com"},{"qq":"","work_id":"WNCD015","department_id":8,"sex":"男","department_name":"研发部","region_id":1,"employee_name":"黄昕远","employee_id":11,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"工程师","email":"huangxinyuan@woniuxy.com"},{"qq":"","work_id":"WNCD017","department_id":3,"sex":"女","department_name":"咨询部","region_id":1,"employee_name":"宋琴","employee_id":12,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"专员","email":"songqin@woniuxy.com"}]}' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_personnel_management.py", line 19, in test_Employee_search
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'totalRow":97,"' not found in '{"totalRow":79,"pageNumber":1,"firstPage":true,"lastPage":false,"totalPage":8,"pageSize":10,"list":[{"qq":"","work_id":"WNCD003","department_id":1,"sex":"男","department_name":"管理部","region_id":1,"employee_name":"陈华","employee_id":3,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"副总经理","email":"chenhua@woniuxy.com"},{"qq":"","work_id":"WNCD004","department_id":5,"sex":"女","department_name":"渠道部","region_id":1,"employee_name":"刘雪梅","employee_id":4,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"渠道主管","email":"liuxuemei@woniuxy.com"},{"qq":"","work_id":"WNCD005","department_id":7,"sex":"男","department_name":"教学部","region_id":1,"employee_name":"李懿","employee_id":5,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"研发主管","email":"liyi@woniuxy.com"},{"qq":"","work_id":"WNCD006","department_id":6,"sex":"男","department_name":"市场部","region_id":1,"employee_name":"吴润","employee_id":6,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"市场主管","email":"wurun@woniuxy.com"},{"qq":"","work_id":"WNCD008","department_id":7,"sex":"男","department_name":"教学部","region_id":1,"employee_name":"王军","employee_id":7,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"讲师","email":"wangjun@woniuxy.com"},{"qq":"","work_id":"WNCD011","department_id":3,"sex":"女","department_name":"咨询部","region_id":1,"employee_name":"郑雪娇","employee_id":8,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"咨询主管","email":"zhengxuejiao@woniuxy.com"},{"qq":"","work_id":"WNCD012","department_id":6,"sex":"女","department_name":"市场部","region_id":1,"employee_name":"刘敏","employee_id":9,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"专员","email":"liumin@woniuxy.com"},{"qq":"","work_id":"WNCD013","department_id":2,"sex":"女","department_name":"就业部","region_id":1,"employee_name":"林丽","employee_id":10,"emp_status":"在职","tel":"13888888888","region_name":"成都","position":"专员","email":"linli@woniuxy.com"},{"qq":"","work_id":"WNCD015","department_id":8,"sex":"男","department_name":"研发部","region_id":1,"employee_name":"黄昕远","employee_id":11,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"工程师","email":"huangxinyuan@woniuxy.com"},{"qq":"","work_id":"WNCD017","department_id":3,"sex":"女","department_name":"咨询部","region_id":1,"employee_name":"宋琴","employee_id":12,"emp_status":"离职","tel":"13888888888","region_name":"成都","position":"专员","email":"songqin@woniuxy.com"}]}' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt7.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Employee_search_1__: 员工管理搜索（姓名为特殊字符）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt7.6')" >
+        pass</a>
+
+    <div id='div_pt7.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt7.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt7.6: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_report_form.ReportForms</td>
+    <td>25</td>
+    <td>23</td>
+    <td>2</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c8',25)">Detail</a></td>
+</tr>
+
+<tr id='pt8.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test01_search_api_0__: 报表中心咨询部搜索接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.1')" >
+        pass</a>
+
+    <div id='div_pt8.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.1: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft8.2' class='none'>
+    <td class='failCase'><div class='testcase'>test01_search_api_1__: 报表中心咨询部搜索接口时间参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.2')" >
+        fail</a>
+
+    <div id='div_ft8.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft8.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft8.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_report_form.py", line 22, in test01_search_api
+    self.assertIn(arg3,search_result,'fail')
+AssertionError: '失败' not found in '{"成都":[{"dept_name":"电销部","employee_name":"倪雪","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"郑雪娇","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"李姣","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"张婷","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"曾超","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"蒋婷婷","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"汤雪娜","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"电销部","employee_name":"陈玉莲","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"电销部","employee_name":"张文佳","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"电销部","employee_name":"陈立利","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0}],"重庆":[{"dept_name":"咨询部","employee_name":"雷明菊","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"李霜霜","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"高羽","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"张曼丽","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"雷红艳","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0}],"西安":[{"dept_name":"咨询部","employee_name":"邓秋菊","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"刘雪梅","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"朱敏","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"郑梦杰","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"潘妮","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"刘佩","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"姚彦龙","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0}]}' : fail
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_report_form.py", line 22, in test01_search_api
+    self.assertIn(arg3,search_result,'fail')
+AssertionError: '失败' not found in '{"成都":[{"dept_name":"电销部","employee_name":"倪雪","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"郑雪娇","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"李姣","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"张婷","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"曾超","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"蒋婷婷","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"汤雪娜","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"电销部","employee_name":"陈玉莲","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"电销部","employee_name":"张文佳","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"电销部","employee_name":"陈立利","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"成都","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0}],"重庆":[{"dept_name":"咨询部","employee_name":"雷明菊","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"李霜霜","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"高羽","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"张曼丽","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"雷红艳","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"重庆","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0}],"西安":[{"dept_name":"咨询部","employee_name":"邓秋菊","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"刘雪梅","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"朱敏","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"郑梦杰","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"潘妮","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"刘佩","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0},{"dept_name":"咨询部","employee_name":"姚彦龙","abandonnum":0,"has_tracking":0,"has_date":0,"privatenum":0,"tempnum":0,"addnum":0,"has_enroll":0,"region_name":"西安","unfinished":0,"claimnum":0,"agiannum":0,"has_visit":0}]}' : fail
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.3' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test02_current_period_api_0__: 报表中心咨询部当期接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.3')" >
+        pass</a>
+
+    <div id='div_pt8.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.3: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.4' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test03_today_api_0__: 报表中心咨询部今日接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.4')" >
+        pass</a>
+
+    <div id='div_pt8.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.4: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.5' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test04_week_api_0__: 报表中心咨询部本周接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.5')" >
+        pass</a>
+
+    <div id='div_pt8.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.5: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.6' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test05_month_api_0__: 报表中心咨询部本月接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.6')" >
+        pass</a>
+
+    <div id='div_pt8.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.6: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test06_lastweek_api_0__: 报表中心咨询部上周接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.7')" >
+        pass</a>
+
+    <div id='div_pt8.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.7: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.8' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test07_lastmonth_api_0__: 报表中心咨询部上月接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.8')" >
+        pass</a>
+
+    <div id='div_pt8.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.8: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test08_year_api_0__: 报表中心咨询部本年接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.9')" >
+        pass</a>
+
+    <div id='div_pt8.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.9: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test09_s_search_api_0__: 报表中心市场部搜索接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.10')" >
+        pass</a>
+
+    <div id='div_pt8.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.10: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft8.11' class='none'>
+    <td class='failCase'><div class='testcase'>test09_s_search_api_1__: 报表中心市场部搜索接口时间参数错误</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft8.11')" >
+        fail</a>
+
+    <div id='div_ft8.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft8.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft8.11: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_report_form.py", line 97, in test09_s_search_api
+    self.assertIn(arg3,s_search_result,'fail')
+AssertionError: '失败' not found in '[{"numcq":2,"source_cd":"","numcd":0,"source_cq":"58同城","num":2,"source_xa":"","source":"58同城","numxa":0},{"numcq":0,"source_cd":"专属","numcd":24,"source_cq":"","num":24,"source_xa":"","source":"专属","numxa":0},{"numcq":2,"source_cd":"前程无忧","numcd":1,"source_cq":"前程无忧","num":3,"source_xa":"","source":"前程无忧","numxa":0},{"numcq":16,"source_cd":"","numcd":0,"source_cq":"智联招聘","num":31,"source_xa":"智联招聘","source":"智联招聘","numxa":15}]' : fail
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_report_form.py", line 97, in test09_s_search_api
+    self.assertIn(arg3,s_search_result,'fail')
+AssertionError: '失败' not found in '[{"numcq":2,"source_cd":"","numcd":0,"source_cq":"58同城","num":2,"source_xa":"","source":"58同城","numxa":0},{"numcq":0,"source_cd":"专属","numcd":24,"source_cq":"","num":24,"source_xa":"","source":"专属","numxa":0},{"numcq":2,"source_cd":"前程无忧","numcd":1,"source_cq":"前程无忧","num":3,"source_xa":"","source":"前程无忧","numxa":0},{"numcq":16,"source_cd":"","numcd":0,"source_cq":"智联招聘","num":31,"source_xa":"智联招聘","source":"智联招聘","numxa":15}]' : fail
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.12' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test10_s_current_period_api_0__: 报表中心市场部当期接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.12')" >
+        pass</a>
+
+    <div id='div_pt8.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.12: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.13' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test11_s_today_api_0__: 报表中心市场部今日接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.13')" >
+        pass</a>
+
+    <div id='div_pt8.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.13: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.14' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test12_s_week_api_0__: 报表中心市场部本周接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.14')" >
+        pass</a>
+
+    <div id='div_pt8.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.14: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.15' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test13_s_month_api_0__: 报表中心市场部本月接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.15')" >
+        pass</a>
+
+    <div id='div_pt8.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.15: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.16' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test14_s_lastweek_api_0__: 报表中心市场部上周接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.16')" >
+        pass</a>
+
+    <div id='div_pt8.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.16: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.17' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test15_s_lastmonth_api_0__: 报表中心市场部上月接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.17')" >
+        pass</a>
+
+    <div id='div_pt8.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.17: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test16_s_year_api_0__: 报表中心市场部本年接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.18')" >
+        pass</a>
+
+    <div id='div_pt8.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.18: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.19' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test17_job_search_api_0__: 报表中心就业部搜索接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.19')" >
+        pass</a>
+
+    <div id='div_pt8.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.19: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test18_job_today_api_0__: 报表中心就业部今日接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.20')" >
+        pass</a>
+
+    <div id='div_pt8.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.20: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.21' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test19_job_week_api_0__: 报表中心就业部今日接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.21')" >
+        pass</a>
+
+    <div id='div_pt8.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.21: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.22' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test20_job_month_api_0__: 报表中心就业部本月接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.22')" >
+        pass</a>
+
+    <div id='div_pt8.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.22: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.23' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test21_job_lastweek_api_0__: 报表中心就业部上周接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.23')" >
+        pass</a>
+
+    <div id='div_pt8.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.23: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.24' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test22_job_lastmonth_api_0__: 报表中心就业部上月接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.24')" >
+        pass</a>
+
+    <div id='div_pt8.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.24: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt8.25' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test23_job_year_api_0__: 报表中心就业部本年接口所有参数正确</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt8.25')" >
+        pass</a>
+
+    <div id='div_pt8.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt8.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt8.25: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='failClass'>
+    <td>test_training_resources.API_train</td>
+    <td>31</td>
+    <td>10</td>
+    <td>21</td>
+    <td>0</td>
+    <td><a href="javascript:showClassDetail('c9',31)">Detail</a></td>
+</tr>
+
+<tr id='pt9.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Allocate_resource_query_0__: 分配资源查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.1')" >
+        pass</a>
+
+    <div id='div_pt9.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.1: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Allocate_resource_query_1__: 分配资源查询(输入框为字符)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.2')" >
+        pass</a>
+
+    <div id='div_pt9.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.2: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.3' class='none'>
+    <td class='failCase'><div class='testcase'>test_Prorated_distribution_0__: 按比例分配</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.3')" >
+        fail</a>
+
+    <div id='div_ft9.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.3: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 102, in test_Prorated_distribution
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'success' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 102, in test_Prorated_distribution
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'success' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.4' class='none'>
+    <td class='failCase'><div class='testcase'>test_Prorated_distribution_1__: 按比例分配（比例格式为字符）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.4')" >
+        fail</a>
+
+    <div id='div_ft9.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.4: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 102, in test_Prorated_distribution
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 102, in test_Prorated_distribution
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.5' class='none'>
+    <td class='failCase'><div class='testcase'>test_Prorated_distribution_2__kon_: 按比例分配（比例为kon）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.5')" >
+        fail</a>
+
+    <div id='div_ft9.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.5: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 102, in test_Prorated_distribution
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 102, in test_Prorated_distribution
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.6' class='none'>
+    <td class='failCase'><div class='testcase'>test_Public_resource_claim_0__: 公共资源认领</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.6')" >
+        fail</a>
+
+    <div id='div_ft9.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.6: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 118, in test_Public_resource_claim
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'success' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 118, in test_Public_resource_claim
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'success' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.7' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Public_resource_claim_1__: 公共资源认领(缺少必填参数)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.7')" >
+        pass</a>
+
+    <div id='div_pt9.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.7: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.8' class='none'>
+    <td class='failCase'><div class='testcase'>test_Public_resource_claim_2__: 公共资源认领(不存在的数据)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.8')" >
+        fail</a>
+
+    <div id='div_ft9.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.8: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 118, in test_Public_resource_claim
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 118, in test_Public_resource_claim
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.9' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Public_resource_query_0__: 公共资源查询</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.9')" >
+        pass</a>
+
+    <div id='div_pt9.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.9: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.10' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Public_resource_query_1__: 公共资源查询(输入</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.10')" >
+        pass</a>
+
+    <div id='div_pt9.10' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.10').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.10: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.11' class='none'>
+    <td class='failCase'><div class='testcase'>test_Public_resource_query_2__: 公共资源查询(状态为特殊字符)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.11')" >
+        fail</a>
+
+    <div id='div_ft9.11' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.11').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.11: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 110, in test_Public_resource_query
+    self.assertIn(arg3,response, '失败')
+AssertionError: 'erro' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 110, in test_Public_resource_query
+    self.assertIn(arg3,response, '失败')
+AssertionError: 'erro' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.12' class='none'>
+    <td class='failCase'><div class='testcase'>test_Track_resources_0__: 跟踪资源</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.12')" >
+        fail</a>
+
+    <div id='div_ft9.12' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.12').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.12: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 38, in test_Track_resources
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'success' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 38, in test_Track_resources
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'success' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.13' class='none'>
+    <td class='failCase'><div class='testcase'>test_Track_resources_1__: 跟踪资源(必填参数为空)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.13')" >
+        fail</a>
+
+    <div id='div_ft9.13' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.13').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.13: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 38, in test_Track_resources
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 38, in test_Track_resources
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.14' class='none'>
+    <td class='failCase'><div class='testcase'>test_Track_resources_2__: 跟踪资源(时间格式错误)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.14')" >
+        fail</a>
+
+    <div id='div_ft9.14' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.14').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.14: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 38, in test_Track_resources
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 38, in test_Track_resources
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.15' class='none'>
+    <td class='failCase'><div class='testcase'>test_Training_modify_0__: 培训资源修改</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.15')" >
+        fail</a>
+
+    <div id='div_ft9.15' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.15').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.15: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 46, in test_Training_modify
+    self.assertIn(arg3,response,'失败')
+AssertionError: '修改成功.' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 46, in test_Training_modify
+    self.assertIn(arg3,response,'失败')
+AssertionError: '修改成功.' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.16' class='none'>
+    <td class='failCase'><div class='testcase'>test_Training_modify_1__: 培训资源修改(姓名为空)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.16')" >
+        fail</a>
+
+    <div id='div_ft9.16' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.16').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.16: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 46, in test_Training_modify
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 46, in test_Training_modify
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.17' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_inquiry_0__: 转交责任人查询(全部查询)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.17')" >
+        fail</a>
+
+    <div id='div_ft9.17' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.17').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.17: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 62, in test_Transfer_inquiry
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'totalRow":96,"' not found in '{"totalRow":65,"pageNumber":1,"firstPage":true,"lastPage":false,"totalPage":7,"pageSize":10,"list":[{"qq":"*****","education":"本科","last_status":"","employee_name":"郑雪娇","source":"专属","major":"信息管理与信息系统","school":"四川农业大学","name":"*****","tel":"*****","customer_id":498476,"region":"成都","age":"1996/6","pool_type":"public"},{"qq":"*****","education":"本科","last_status":"可跟进","employee_name":"郑雪娇","source":"专属","major":"电子信息工程","school":"四川师范大学","name":"*****","tel":"*****","customer_id":498481,"region":"成都","age":"1995/12","pool_type":"private"},{"qq":"*****","education":"本科","last_status":"已报名","employee_name":"郑雪娇","source":"专属","major":"软件工程","school":"西安石油大学","name":"*****","tel":"*****","customer_id":512869,"region":"成都","age":"1993/8","pool_type":"student"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"李姣","source":"专属","major":"计算机软件","school":"电子科技大学","name":"*****","tel":"*****","customer_id":544025,"region":"成都","age":"21","pool_type":"temp"},{"qq":"*****","education":"大专","last_status":"新入库","employee_name":"李姣","source":"专属","major":"计算机应用技术","school":"成都职业技术学院","name":"*****","tel":"*****","customer_id":544215,"region":"成都","age":"1996/4","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"张婷","source":"专属","major":"计算机科学与技术","school":"西昌学院","name":"*****","tel":"*****","customer_id":543803,"region":"成都","age":"23","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"张婷","source":"专属","major":"环境设计","school":"四川师范大学成都学院","name":"*****","tel":"*****","customer_id":545232,"region":"成都","age":"22","pool_type":"temp"},{"qq":"*****","education":"大专","last_status":"新入库","employee_name":"汤雪娜","source":"专属","major":"计算机科学与技术","school":"成都东软学院","name":"*****","tel":"*****","customer_id":513698,"region":"成都","age":"24","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"汤雪娜","source":"专属","major":"物联网工程","school":"宁夏理工学院","name":"*****","tel":"*****","customer_id":543553,"region":"成都","age":"24","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"汤雪娜","source":"专属","major":"计算机科学与技术","school":"西南财经大学天府学院","name":"*****","tel":"*****","customer_id":546404,"region":"成都","age":"23","pool_type":"temp"}]}' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 62, in test_Transfer_inquiry
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'totalRow":96,"' not found in '{"totalRow":65,"pageNumber":1,"firstPage":true,"lastPage":false,"totalPage":7,"pageSize":10,"list":[{"qq":"*****","education":"本科","last_status":"","employee_name":"郑雪娇","source":"专属","major":"信息管理与信息系统","school":"四川农业大学","name":"*****","tel":"*****","customer_id":498476,"region":"成都","age":"1996/6","pool_type":"public"},{"qq":"*****","education":"本科","last_status":"可跟进","employee_name":"郑雪娇","source":"专属","major":"电子信息工程","school":"四川师范大学","name":"*****","tel":"*****","customer_id":498481,"region":"成都","age":"1995/12","pool_type":"private"},{"qq":"*****","education":"本科","last_status":"已报名","employee_name":"郑雪娇","source":"专属","major":"软件工程","school":"西安石油大学","name":"*****","tel":"*****","customer_id":512869,"region":"成都","age":"1993/8","pool_type":"student"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"李姣","source":"专属","major":"计算机软件","school":"电子科技大学","name":"*****","tel":"*****","customer_id":544025,"region":"成都","age":"21","pool_type":"temp"},{"qq":"*****","education":"大专","last_status":"新入库","employee_name":"李姣","source":"专属","major":"计算机应用技术","school":"成都职业技术学院","name":"*****","tel":"*****","customer_id":544215,"region":"成都","age":"1996/4","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"张婷","source":"专属","major":"计算机科学与技术","school":"西昌学院","name":"*****","tel":"*****","customer_id":543803,"region":"成都","age":"23","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"张婷","source":"专属","major":"环境设计","school":"四川师范大学成都学院","name":"*****","tel":"*****","customer_id":545232,"region":"成都","age":"22","pool_type":"temp"},{"qq":"*****","education":"大专","last_status":"新入库","employee_name":"汤雪娜","source":"专属","major":"计算机科学与技术","school":"成都东软学院","name":"*****","tel":"*****","customer_id":513698,"region":"成都","age":"24","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"汤雪娜","source":"专属","major":"物联网工程","school":"宁夏理工学院","name":"*****","tel":"*****","customer_id":543553,"region":"成都","age":"24","pool_type":"temp"},{"qq":"*****","education":"本科","last_status":"新入库","employee_name":"汤雪娜","source":"专属","major":"计算机科学与技术","school":"西南财经大学天府学院","name":"*****","tel":"*****","customer_id":546404,"region":"成都","age":"23","pool_type":"temp"}]}' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.18' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Transfer_inquiry_1__: 转交责任人查询(特殊字符查询)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.18')" >
+        pass</a>
+
+    <div id='div_pt9.18' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.18').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.18: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.19' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_inquiry_2__: 转交责任人查询(缺少参数)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.19')" >
+        fail</a>
+
+    <div id='div_ft9.19' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.19').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.19: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 62, in test_Transfer_inquiry
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 62, in test_Transfer_inquiry
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.20' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Transfer_show_0__: 转交责任人查看</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.20')" >
+        pass</a>
+
+    <div id='div_pt9.20' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.20').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.20: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.21' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_show_1__: 转交责任人查看（缺少参数）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.21')" >
+        fail</a>
+
+    <div id='div_ft9.21' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.21').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.21: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 70, in test_Transfer_show
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 70, in test_Transfer_show
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.22' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_show_2__: 转交责任人查看（参数格式有误）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.22')" >
+        fail</a>
+
+    <div id='div_ft9.22' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.22').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.22: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 70, in test_Transfer_show
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 70, in test_Transfer_show
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.23' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_submit_0__: 转交责任人提交(咨询师)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.23')" >
+        fail</a>
+
+    <div id='div_ft9.23' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.23').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.23: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 78, in test_Transfer_submit
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'success' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 78, in test_Transfer_submit
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'success' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.24' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_submit_1__: 转交责任人提交（区域）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.24')" >
+        fail</a>
+
+    <div id='div_ft9.24' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.24').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.24: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 78, in test_Transfer_submit
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'success' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 78, in test_Transfer_submit
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'success' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.25' class='none'>
+    <td class='failCase'><div class='testcase'>test_Transfer_submit_2__: 转交责任人提交（参数格式错误）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.25')" >
+        fail</a>
+
+    <div id='div_ft9.25' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.25').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.25: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 78, in test_Transfer_submit
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 78, in test_Transfer_submit
+    self.assertIn( arg3, response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.26' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_Waste_training_0__: 培训资源废弃</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.26')" >
+        pass</a>
+
+    <div id='div_pt9.26' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.26').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.26: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.27' class='none'>
+    <td class='failCase'><div class='testcase'>test_Waste_training_1__: 培训资源废弃（缺少参数）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.27')" >
+        fail</a>
+
+    <div id='div_ft9.27' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.27').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.27: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 54, in test_Waste_training
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 54, in test_Waste_training
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.28' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_resources_add_0__: 培训资源新增</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.28')" >
+        pass</a>
+
+    <div id='div_pt9.28' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.28').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.28: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.29' class='none'>
+    <td class='failCase'><div class='testcase'>test_resources_add_1__: 培训资源新增（缺少必填参数）</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.29')" >
+        fail</a>
+
+    <div id='div_ft9.29' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.29').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.29: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 30, in test_resources_add
+    self.assertEqual(response,arg3,'失败')
+AssertionError: '新增成功.' != 'erro'
+- 新增成功.
++ erro
+ : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 30, in test_resources_add
+    self.assertEqual(response,arg3,'失败')
+AssertionError: '新增成功.' != 'erro'
+- 新增成功.
++ erro
+ : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='pt9.30' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_resources_search_0__: 培训资源搜索</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt9.30')" >
+        pass</a>
+
+    <div id='div_pt9.30' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt9.30').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt9.30: 
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft9.31' class='none'>
+    <td class='failCase'><div class='testcase'>test_resources_search_1__: 培训资源搜索(来源格式错误)</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft9.31')" >
+        fail</a>
+
+    <div id='div_ft9.31' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft9.31').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft9.31: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 20, in test_resources_search
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : 失败
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\parameterized\parameterized.py", line 530, in standalone_func
+    return func(*(a + p.args), **p.kwargs)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_api\test_training_resources.py", line 20, in test_resources_search
+    self.assertIn(arg3,response,'失败')
+AssertionError: 'erro' not found in '{"totalRow":0,"pageNumber":1,"firstPage":true,"lastPage":true,"totalPage":0,"pageSize":10,"list":[]}' : 失败
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>116</td>
+    <td>62</td>
+    <td>52</td>
+    <td>2</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>

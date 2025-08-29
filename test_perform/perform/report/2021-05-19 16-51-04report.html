@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>woniuboss2.5 automation report</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    
+<style type="text/css" media="screen">
+body        { font-family: verdana, arial, helvetica, sans-serif; font-size: 80%; }
+table       { font-size: 100%; }
+pre         { }
+
+/* -- heading ---------------------------------------------------------------------- */
+h1 {
+	font-size: 16pt;
+	color: gray;
+}
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+
+.heading .attribute {
+    margin-top: 1ex;
+    margin-bottom: 0;
+}
+
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+
+/* -- css div popup ------------------------------------------------------------------------ */
+a.popup_link {
+}
+
+a.popup_link:hover {
+    color: red;
+}
+
+.popup_window {
+    display: none;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    /*border: solid #627173 1px; */
+    padding: 10px;
+    background-color: #E6E6D6;
+    font-family: "Lucida Console", "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 8pt;
+    width: 500px;
+}
+
+}
+/* -- report ------------------------------------------------------------------------ */
+#show_detail_line {
+    margin-top: 3ex;
+    margin-bottom: 1ex;
+}
+#result_table {
+    width: 80%;
+    border-collapse: collapse;
+    border: 1px solid #777;
+}
+#header_row {
+    font-weight: bold;
+    color: white;
+    background-color: #777;
+}
+#result_table td {
+    border: 1px solid #777;
+    padding: 2px;
+}
+#total_row  { font-weight: bold; }
+.passClass  { background-color: #6c6; }
+.failClass  { background-color: #c60; }
+.errorClass { background-color: #c00; }
+.passCase   { color: #6c6; }
+.failCase   { color: #c60; font-weight: bold; }
+.errorCase  { color: #c00; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+
+
+/* -- ending ---------------------------------------------------------------------- */
+#ending {
+}
+
+</style>
+
+</head>
+<body>
+<script language="javascript" type="text/javascript"><!--
+output_list = Array();
+
+/* level - 0:Summary; 1:Failed; 2:All */
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level < 1) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level > 1) {
+                tr.className = '';
+            }
+            else {
+                tr.className = 'hiddenRow';
+            }
+        }
+    }
+}
+
+
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        tid0 = 't' + cid.substr(1) + '.' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        if (toHide) {
+            document.getElementById('div_'+tid).style.display = 'none'
+            document.getElementById(tid).className = 'hiddenRow';
+        }
+        else {
+            document.getElementById(tid).className = '';
+        }
+    }
+}
+
+
+function showTestDetail(div_id){
+    var details_div = document.getElementById(div_id)
+    var displayState = details_div.style.display
+    // alert(displayState)
+    if (displayState != 'block' ) {
+        displayState = 'block'
+        details_div.style.display = 'block'
+    }
+    else {
+        details_div.style.display = 'none'
+    }
+}
+
+
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+
+/* obsoleted by detail in <div>
+function showOutput(id, name) {
+    var w = window.open("", //url
+                    name,
+                    "resizable,scrollbars,status,width=800,height=450");
+    d = w.document;
+    d.write("<pre>");
+    d.write(html_escape(output_list[id]));
+    d.write("\n");
+    d.write("<a href='javascript:window.close()'>close</a>\n");
+    d.write("</pre>\n");
+    d.close();
+}
+*/
+--></script>
+
+<div class='heading'>
+<h1>woniuboss2.5 automation report</h1>
+<p class='attribute'><strong>Start Time:</strong> 2021-05-19 16:51:04</p>
+<p class='attribute'><strong>Duration:</strong> 0:01:30.257570</p>
+<p class='attribute'><strong>Status:</strong> Error 15</p>
+
+<p class='description'>oniuboss2.5 unittest framework</p>
+</div>
+
+
+
+<p id='show_detail_line'>Show
+<a href='javascript:showCase(0)'>Summary</a>
+<a href='javascript:showCase(1)'>Failed</a>
+<a href='javascript:showCase(2)'>All</a>
+</p>
+<table id='result_table'>
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row'>
+    <td>Test Group/Test case</td>
+    <td>Count</td>
+    <td>Pass</td>
+    <td>Fail</td>
+    <td>Error</td>
+    <td>View</td>
+</tr>
+
+<tr class='errorClass'>
+    <td>unittest.loader._FailedTest</td>
+    <td>9</td>
+    <td>0</td>
+    <td>0</td>
+    <td>9</td>
+    <td><a href="javascript:showClassDetail('c1',9)">Detail</a></td>
+</tr>
+
+<tr id='ft1.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01_login</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+        error</a>
+
+    <div id='div_ft1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.1: ImportError: Failed to import test module: test_01_login
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_01_login.py", line 8, in &lt;module&gt;
+    class TestLogin(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_01_login.py", line 17, in TestLogin
+    @parameterized.expand(mydata)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_01_login
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_01_login.py", line 8, in &lt;module&gt;
+    class TestLogin(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_01_login.py", line 17, in TestLogin
+    @parameterized.expand(mydata)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_report_form</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
+        error</a>
+
+    <div id='div_ft1.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.2: ImportError: Failed to import test module: test_02_report_form
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_02_report_form.py", line 6, in &lt;module&gt;
+    class TestReport(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_02_report_form.py", line 20, in TestReport
+    @parameterized.expand(mydata)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_02_report_form
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_02_report_form.py", line 6, in &lt;module&gt;
+    class TestReport(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_02_report_form.py", line 20, in TestReport
+    @parameterized.expand(mydata)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_marketing_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.3')" >
+        error</a>
+
+    <div id='div_ft1.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.3: ImportError: Failed to import test module: test_03_marketing_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_03_marketing_management.py", line 8, in &lt;module&gt;
+    class Marketing(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_03_marketing_management.py", line 20, in Marketing
+    @parameterized.expand(loginfo)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_03_marketing_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_03_marketing_management.py", line 8, in &lt;module&gt;
+    class Marketing(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_03_marketing_management.py", line 20, in Marketing
+    @parameterized.expand(loginfo)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_04_training_resources</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.4')" >
+        error</a>
+
+    <div id='div_ft1.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.4: ImportError: Failed to import test module: test_04_training_resources
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_04_training_resources.py", line 7, in &lt;module&gt;
+    class Training(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_04_training_resources.py", line 14, in Training
+    @parameterized.expand(loginfo)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_04_training_resources
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_04_training_resources.py", line 7, in &lt;module&gt;
+    class Training(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_04_training_resources.py", line 14, in Training
+    @parameterized.expand(loginfo)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_05_enterprise_customers</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.5')" >
+        error</a>
+
+    <div id='div_ft1.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.5: ImportError: Failed to import test module: test_05_enterprise_customers
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_05_enterprise_customers.py", line 7, in &lt;module&gt;
+    class Enterprise(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_05_enterprise_customers.py", line 14, in Enterprise
+    @parameterized.expand(enterprise)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_05_enterprise_customers
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_05_enterprise_customers.py", line 7, in &lt;module&gt;
+    class Enterprise(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_05_enterprise_customers.py", line 14, in Enterprise
+    @parameterized.expand(enterprise)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_06_student_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.6')" >
+        error</a>
+
+    <div id='div_ft1.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.6: ImportError: Failed to import test module: test_06_student_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_06_student_management.py", line 7, in &lt;module&gt;
+    class Studen(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_06_student_management.py", line 30, in Studen
+    @parameterized.expand(data)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_06_student_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_06_student_management.py", line 7, in &lt;module&gt;
+    class Studen(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_06_student_management.py", line 30, in Studen
+    @parameterized.expand(data)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.7' class='none'>
+    <td class='errorCase'><div class='testcase'>test_07_employment_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.7')" >
+        error</a>
+
+    <div id='div_ft1.7' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.7').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.7: ImportError: Failed to import test module: test_07_employment_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_07_employment_management.py", line 7, in &lt;module&gt;
+    class Employ(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_07_employment_management.py", line 19, in Employ
+    @parameterized.expand(data)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_07_employment_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_07_employment_management.py", line 7, in &lt;module&gt;
+    class Employ(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_07_employment_management.py", line 19, in Employ
+    @parameterized.expand(data)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.8' class='none'>
+    <td class='errorCase'><div class='testcase'>test_08_financial_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.8')" >
+        error</a>
+
+    <div id='div_ft1.8' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.8').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.8: ImportError: Failed to import test module: test_08_financial_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_08_financial_management.py", line 8, in &lt;module&gt;
+    class Financial(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_08_financial_management.py", line 19, in Financial
+    @parameterized.expand(loginfo)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_08_financial_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_08_financial_management.py", line 8, in &lt;module&gt;
+    class Financial(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_08_financial_management.py", line 19, in Financial
+    @parameterized.expand(loginfo)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft1.9' class='none'>
+    <td class='errorCase'><div class='testcase'>test_09_personnel_management</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.9')" >
+        error</a>
+
+    <div id='div_ft1.9' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.9').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft1.9: ImportError: Failed to import test module: test_09_personnel_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_09_personnel_management.py", line 8, in &lt;module&gt;
+    class PersonnelManagement(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_09_personnel_management.py", line 23, in PersonnelManagement
+    @parameterized.expand(info)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+ImportError: Failed to import test module: test_09_personnel_management
+Traceback (most recent call last):
+  File "D:\python3.7\lib\unittest\loader.py", line 436, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "D:\python3.7\lib\unittest\loader.py", line 377, in _get_module_from_name
+    __import__(name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_09_personnel_management.py", line 8, in &lt;module&gt;
+    class PersonnelManagement(unittest.TestCase):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_09_personnel_management.py", line 23, in PersonnelManagement
+    @parameterized.expand(info)
+AttributeError: module 'parameterized.parameterized' has no attribute 'expand'
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='errorClass'>
+    <td>test_11_backstage_management.BackStageManagement</td>
+    <td>6</td>
+    <td>0</td>
+    <td>0</td>
+    <td>6</td>
+    <td><a href="javascript:showClassDetail('c2',6)">Detail</a></td>
+</tr>
+
+<tr id='ft2.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_01_backstage_button: 进入后台管理界面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.1')" >
+        error</a>
+
+    <div id='div_ft2.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.1: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 18, in test_01_backstage_button
+    self.backstageManagementpage.backstage_button()  # 点击人事管理按钮
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 15, in backstage_button
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="nav2"]/a[10]"}
+  (Session info: chrome=83.0.4103.116)
+
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 18, in test_01_backstage_button
+    self.backstageManagementpage.backstage_button()  # 点击人事管理按钮
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 15, in backstage_button
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="nav2"]/a[10]"}
+  (Session info: chrome=83.0.4103.116)
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_02_role_management_button: 进入角色管理界面</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.2')" >
+        error</a>
+
+    <div id='div_ft2.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.2: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 25, in test_02_role_management_button
+    self.backstageManagementpage.role_management_button()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 19, in role_management_button
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="content"]/div[2]/ul/li[2]/a"}
+  (Session info: chrome=83.0.4103.116)
+
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 25, in test_02_role_management_button
+    self.backstageManagementpage.role_management_button()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 19, in role_management_button
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="content"]/div[2]/ul/li[2]/a"}
+  (Session info: chrome=83.0.4103.116)
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.3' class='none'>
+    <td class='errorCase'><div class='testcase'>test_03_add_role_button: 点击新增按钮</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.3')" >
+        error</a>
+
+    <div id='div_ft2.3' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.3').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.3: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 29, in test_03_add_role_button
+    self.backstageManagementpage.add_role()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 23, in add_role
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@onclick="showAddRoleModal();"]"}
+  (Session info: chrome=83.0.4103.116)
+
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 29, in test_03_add_role_button
+    self.backstageManagementpage.add_role()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 23, in add_role
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@onclick="showAddRoleModal();"]"}
+  (Session info: chrome=83.0.4103.116)
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.4' class='none'>
+    <td class='errorCase'><div class='testcase'>test_04_add_role_name: 新增角色名</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.4')" >
+        error</a>
+
+    <div id='div_ft2.4' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.4').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.4: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 34, in test_04_add_role_name
+    self.backstageManagementpage.add_role_name('系统管理（伪）')
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 27, in add_role_name
+    self.input_text(*locator,value=name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 24, in input_text
+    self.find_element(*locator).send_keys(value)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@name="role.name"]"}
+  (Session info: chrome=83.0.4103.116)
+
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 34, in test_04_add_role_name
+    self.backstageManagementpage.add_role_name('系统管理（伪）')
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 27, in add_role_name
+    self.input_text(*locator,value=name)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 24, in input_text
+    self.find_element(*locator).send_keys(value)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@name="role.name"]"}
+  (Session info: chrome=83.0.4103.116)
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.5' class='none'>
+    <td class='errorCase'><div class='testcase'>test_05_add_role_describe: 新增角色描述</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.5')" >
+        error</a>
+
+    <div id='div_ft2.5' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.5').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.5: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 39, in test_05_add_role_describe
+    self.backstageManagementpage.add_role_describe('实验数据')
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 31, in add_role_describe
+    self.input_text(*locator,value=describe)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 24, in input_text
+    self.find_element(*locator).send_keys(value)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@name="role.des"]"}
+  (Session info: chrome=83.0.4103.116)
+
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 39, in test_05_add_role_describe
+    self.backstageManagementpage.add_role_describe('实验数据')
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 31, in add_role_describe
+    self.input_text(*locator,value=describe)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 24, in input_text
+    self.find_element(*locator).send_keys(value)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@name="role.des"]"}
+  (Session info: chrome=83.0.4103.116)
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft2.6' class='none'>
+    <td class='errorCase'><div class='testcase'>test_06_add_role_button: 新增角色保存按钮,确认保存按钮</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft2.6')" >
+        error</a>
+
+    <div id='div_ft2.6' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft2.6').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft2.6: Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 44, in test_06_add_role_button
+    self.backstageManagementpage.add_save_role()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 35, in add_save_role
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="saveAddRole"]"}
+  (Session info: chrome=83.0.4103.116)
+
+Traceback (most recent call last):
+  File "D:\py_test\ui_ui_ui\automation_frame\test_case\test_web\test_11_backstage_management.py", line 44, in test_06_add_role_button
+    self.backstageManagementpage.add_save_role()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_backstage_management_page.py", line 35, in add_save_role
+    self.click(*locator)
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 28, in click
+    self.find_element(*locator).click()
+  File "D:\py_test\ui_ui_ui\automation_frame\test_business\web_base_page.py", line 20, in find_element
+    return self.driver.find_element(*locator)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 978, in find_element
+    'value': value})['value']
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "D:\py_test\ui_ui_ui\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {"method":"xpath","selector":"//*[@id="saveAddRole"]"}
+  (Session info: chrome=83.0.4103.116)
+
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='total_row'>
+    <td>Total</td>
+    <td>15</td>
+    <td>0</td>
+    <td>0</td>
+    <td>15</td>
+    <td>&nbsp;</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+
+</body>
+</html>
